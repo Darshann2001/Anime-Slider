@@ -1,0 +1,443 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;700&display=swap');
+
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+:root {
+    --background-color: rgb(6, 11, 25);
+    --border-color: rgb(255, 255, 255, 0.1);
+    --font-family: 'Roboto Condensed', sans-serif;
+    --japnese-font: 'Noto Serif JP', serif;
+    --shurikenhover: url('../images/shurikencursor.png');
+}
+
+/* 
+.wrapper{
+    width: 98%;
+    max-width: 1200px;
+    margin: 0 auto;
+} */
+
+body {
+    background-color: var(--background-color);
+    /* height: 100vh; */
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    margin: 0 auto;
+    width: 98%;
+    max-width: 1200px;
+}
+
+nav {
+    position: relative;
+}
+
+.hamburger {
+    cursor: pointer;
+    height: 27px;
+    width: 27px;
+    margin: 20px;
+    position: absolute;
+    z-index: 200;
+    right: 0;
+    display: none;
+}
+
+
+
+.hamburger span {
+    top: 13px;
+    width: 27px;
+    height: 3px;
+    background-color: white;
+    position: relative;
+    display: block;
+}
+
+.hamburger span::after,
+.hamburger span::before {
+    background: #fff;
+    display: block;
+    height: 4px;
+    opacity: 1;
+    position: absolute;
+    transition: 0.3s ease-in-out;
+    width: 20px;
+    height: 3px;
+    content: '';
+}
+
+.hamburger span::after {
+    right: 0px;
+    top: 10px;
+    width: 20px;
+}
+
+.hamburger span::before {
+    right: 0px;
+    top: -10px;
+    width: 16px;
+
+}
+
+
+
+.close span {
+    transform: rotate(-45deg);
+    top: 13px;
+    width: 27px;
+}
+
+.close span:before {
+    top: 0px;
+    transform: rotate(90deg);
+    width: 27px;
+}
+
+.close span:after {
+    top: 0px;
+    left: 0;
+    transform: rotate(90deg);
+    opacity: 0;
+    width: 0;
+}
+
+.navbar {
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid var(--border-color);
+    font-family: var(--font-family);
+    background-color: var(--background-color);
+    z-index: 100;
+    transition: all 200ms ease;
+}
+
+.navbar>.nav-section {
+    padding: 1em 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    border-left: 1px solid var(--border-color);
+}
+
+#nav-logo-section {
+    justify-content: start;
+}
+
+a {
+    text-decoration: none;
+    color: white;
+    font-size: 14px;
+    transition: text-decoration ease-in .3s;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+.navbar svg {
+    fill: white;
+    /* background: red; */
+    height: 20px;
+    cursor: pointer;
+
+}
+
+#nav-logo-section,
+#nav-link-section {
+    flex-basis: calc(100% / 3);
+}
+
+#nav-social-section,
+#nav-contact-section {
+    flex-grow: 1;
+}
+
+main {
+    flex-grow: 1;
+    position: relative;
+    width: 100%;
+    display: flex;
+    overflow: hidden;
+}
+
+main>article {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    display: grid;
+    height: 100%;
+    width: 100%;
+    grid-template-columns: 2fr 1fr;
+    grid-template-rows: 2fr 1fr;
+    transition: transform 400ms ease;
+    background-color: var(--background-color);
+    z-index: 50;
+}
+
+main>article[data-status='unknown'] {
+    transform: translateX(500%);
+
+}
+
+main>article[data-status='unactive'] {
+    transform: translateX(500%);
+
+}
+
+main>article[data-status='active'] {
+    transform: translateX(0%);
+}
+
+.article-image-section {
+    width: 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+
+}
+
+.article-bg1 {
+    background-image: url('../images/itachi.webp');
+}
+
+.article-bg2 {
+    background-image: url('../images/jiraya.jpg');
+}
+
+.article-bg3 {
+    background-image: url('../images/naruto.webp');
+}
+
+.article-bg4 {
+    background-image: url('../images/sasuke.jpg');
+}
+
+
+main>article>.article-section {
+    height: 100%;
+    border: 1px solid var(--border-color);
+
+}
+
+.article-description-section {
+    display: flex;
+    flex-direction: column;
+    color: white;
+    font-family: var(--font-family);
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    text-align: center;
+    line-height: 30px;
+    font-size: 20px;
+    text-transform: uppercase;
+    transition: transform 600ms ease-in;
+}
+
+.article-description-section[data-quote='unknown'] {
+    transform: translateY(0%);
+}
+
+.article-description-section[data-quote='unactivequote'] {
+    transform: translateY(-100%);
+}
+
+.article-description-section[data-quote='activequote'] {
+    transform: translateY(0%);
+}
+
+
+.article-description-section>.quote>.quote-owner {
+    margin-top: 4px;
+    text-align: end;
+}
+
+main>article>.article-description-section,
+main>article>.article-nav-section {
+    border-left: 1px solid var(--border-color);
+}
+
+main>article>.article-title-section,
+main>article>.article-nav-section {
+    border-top: 1px solid var(--border-color);
+}
+
+.article-title-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: var(--shurikenhover);
+}
+
+.article-title-section p {
+    color: white;
+    font-family: var(--japnese-font);
+    font-size: 30px;
+    margin-left: 20px;
+}
+
+.article-title-section .shuriken {
+    transition: transform 500ms ease-in-out;
+    cursor: pointer;
+    margin-right: 30px;
+    height: 140px;
+    width: 140px;
+}
+
+.article-title-section .shuriken img {
+    height: 100%;
+    width: 100%;
+    mix-blend-mode: difference;
+}
+
+.article-title-section .shuriken:hover {
+    transform: rotateZ(-120deg);
+    transition: transform 700ms ease-in-out;
+}
+
+.article-title-section [data-shuriken='unactiveshuriken'] {
+    transform: rotateZ(0deg);
+}
+
+.article-title-section [data-shuriken='activeshuriken'] {
+    transform: rotateZ(360deg);
+    transition: transform 700ms ease-in-out;
+}
+
+.article-nav-section {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    gap: 10px;
+}
+
+.article-nav-section button {
+    cursor: pointer;
+    color: white;
+    font-size: 55px;
+    font-family: var(--font-family);
+    background: transparent;
+    border: none;
+}
+
+@media screen and (max-width: 582px) {
+    a {
+        font-size: 10px;
+    }
+
+    .article-description-section {
+        line-height: 28px;
+        font-size: 17px;
+    }
+
+    .article-title-section p {
+        font-size: 22px;
+        margin-left: 12px;
+    }
+}
+
+@media screen and (max-width: 515px) {
+    main>article {
+        grid-template-columns: 1fr;
+        grid-template-rows: 3fr;
+    }
+
+    .article-title-section p {
+        font-size: 33px;
+        margin-left: 12px;
+    }
+
+    .article-title-section .shuriken {
+        height: 100px;
+        width: 100px;
+    }
+
+    .article-image-section {
+        z-index: 50;
+        position: relative;
+    }
+
+    .article-description-section {
+        padding: 8px;
+    }
+
+    .hamburger {
+        display: block;
+    }
+
+    .navbar {
+        position: absolute;
+        width: 50%;
+        flex-direction: column;
+        transform: translateY(-100%);
+        right: 0;
+        height: 100vh;
+    }
+
+    .overlay {
+        transform: translateY(0%);
+    }
+
+    .navbar>.nav-section {
+        border-left: none;
+        flex-direction: column;
+        justify-content: space-evenly;
+
+    }
+
+    #nav-logo-section,
+    #nav-link-section {
+        flex-basis: calc(100% / 5);
+        justify-content: center;
+        gap: 30px;
+    }
+
+    .navbar>.nav-section a {
+        font-size: 20px;
+
+    }
+
+    #nav-social-section,
+    #nav-contact-section,
+    #nav-logo-section,
+    #nav-link-section {
+        gap: 30px;
+    }
+
+}
+
+@media screen and (max-width:480px) {
+    main>article {
+        grid-template-rows: 3fr;
+    }
+
+    .article-title-section .shuriken {
+        height: 80px;
+        width: 80px;
+    }
+    .article-title-section p {
+        font-size: 28px;
+    }
+}
+
+@media screen and (max-width:381px) {
+
+    .article-nav-section button {
+        font-size: 120px;
+    }
+
+    .article-description-section {
+        font-size: 19px;
+    }
+    main>article {
+        height: calc(100% - 1.4rem);
+    }
+}
